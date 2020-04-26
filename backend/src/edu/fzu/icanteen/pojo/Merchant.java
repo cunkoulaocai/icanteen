@@ -1,7 +1,7 @@
 package edu.fzu.icanteen.pojo;
 
 public class Merchant {
-	//自增ID
+	//自增主键
     private int id;
     //商家姓名
     private String name;
