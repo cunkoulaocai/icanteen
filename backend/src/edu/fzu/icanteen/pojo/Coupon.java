@@ -28,7 +28,7 @@ public class Coupon {
         return merchantId;
     }
 
-    public void setPonit(int merchantId) {
+    public void setMerchantId(int merchantId) {
         this.merchantId = merchantId;
     }
     
