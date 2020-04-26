@@ -1,17 +1,17 @@
 package edu.fzu.icanteen.pojo;
 
 public class Customer {
-	//×ÔÔöÖ÷¼ü
+	//è‡ªå¢ä¸»é”®
     private int id;
-    //Ñ§ºÅ    
+    //å­¦å·    
     private String studentId;
-    //ĞÕÃû
+    //å§“å
     private String name;
-    //ÃÜÂë
+    //å¯†ç 
     private String password;
-    //»ı·Ö
+    //ç§¯åˆ†
     private int point;
-    //×´Ì¬
+    //çŠ¶æ€
     private int state;
 
     public int getId() {

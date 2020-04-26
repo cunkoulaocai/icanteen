@@ -1,19 +1,19 @@
 package edu.fzu.icanteen.pojo;
 
 public class Administraor {
-	//自增主键
+	//鑷涓婚敭
     private int id;
-    //姓名
+    //濮撳悕
     private String name;
-    //密码
+    //瀵嗙爜
     private String password;
-    //评论管理权限
+    //璇勮绠＄悊鏉冮檺
     private int commentManage;
-    //用户管理权限
+    //鐢ㄦ埛绠＄悊鏉冮檺
     private int userManage;
-    //商家管理权限
+    //鍟嗗绠＄悊鏉冮檺
     private int merchantManage;
-    //权限管理权限
+    //鏉冮檺绠＄悊鏉冮檺
     private int privilegeManage;
 
     public int getId() {
