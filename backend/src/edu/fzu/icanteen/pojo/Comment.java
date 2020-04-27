@@ -3,18 +3,30 @@ package edu.fzu.icanteen.pojo;
 import java.sql.Date;
 
 public class Comment {
+	//自增主键
 	private int id;
+	//用户ID
 	private String customerid;
+	//商家ID
 	private String merchantid;
+	//菜品ID
 	private String foodid;
+	//评论内容
 	private String content;
+	//发送时间
 	private Date sendtime;
+	//总体评分
 	private int overallscore;
+	//态度评分
 	private int attitudescore;
+	//美味评分
 	private int tastescore;
+	//价格评分
 	private int pricescore;
+	//等待时间
 	private int waitingtime;
-	private int State;
+	//状态
+	private int state;
 	
 	public int getId() {
 		return id;
@@ -105,11 +117,11 @@ public class Comment {
 	}
 	
 	public int getState() {
-		return State;
+		return state;
 	}
 
-	public void setState(int State) {
-		this.State = State;
+	public void setState(int state) {
+		this.state = state;
 	}
 	
 	
