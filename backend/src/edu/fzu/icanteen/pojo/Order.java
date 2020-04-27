@@ -1,6 +1,7 @@
 package edu.fzu.icanteen.pojo;
 
 import java.sql.Date;
+import java.util.List;
 
 public class Order {
 	//自增主键
@@ -17,6 +18,8 @@ public class Order {
     private Date orderTime;
     //订单关闭时间
     private Date closeTime;
+    //订单项
+    private List<OrderItem> orderItems;  
     
     public int getId() {
         return id;
@@ -72,5 +75,13 @@ public class Order {
 
     public void setCloseTime(Date closeTime) {
         this.closeTime = closeTime;
+    }
+    
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 }
