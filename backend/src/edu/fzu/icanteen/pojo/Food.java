@@ -1,9 +1,11 @@
 package edu.fzu.icanteen.pojo;
 
+import java.util.List;
+
 public class Food {
 	//自增主键
     private int id;
-    //食品名
+    //菜品名
     private String name;
     //商家id
     private int merchantId;
@@ -13,6 +15,8 @@ public class Food {
     private double price;
     //数量
     private int quantity;
+    //菜品图片
+    private List<FoodImage> foodImages;  
     
     public int getId() {
         return id;
@@ -60,5 +64,13 @@ public class Food {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+    
+    public List<FoodImage> getFoodImages() {
+        return foodImages;
+    }
+
+    public void setFoodImages(List<FoodImage> foodImages) {
+        this.foodImages = foodImages;
     }
 }
