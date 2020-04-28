@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.fzu.icanteen.pojo.Customer;
 import edu.fzu.icanteen.pojo.Merchant;
 import edu.fzu.icanteen.util.DBUtil;
 
@@ -56,7 +55,7 @@ public class MerchantDAOImpl implements MerchantDAO {
 	@Override
 	public void update(Merchant bean) {
 		// TODO Auto-generated method stub
-		String sql = "update merchant set password=? where id=?";
+		String sql = "update merchant set password = ? where id = ?";
 		try {
 			connection = DBUtil.getConnection();
 			pstmt = connection.prepareStatement(sql);
@@ -107,7 +106,7 @@ public class MerchantDAOImpl implements MerchantDAO {
 	public List<Merchant> list() {
 		// TODO Auto-generated method stub
 		List<Merchant> merchants = new ArrayList<>();
-		String sql = "SELECT * FROM merchant WHERE 1=1 ";
+		String sql = "SELECT * FROM merchant WHERE 1 = 1 ";
 		// 获取连接；创建PreparedSatemant对象
 		try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
 			ResultSet rs = ps.executeQuery(); // 得到结果集
@@ -136,7 +135,7 @@ public class MerchantDAOImpl implements MerchantDAO {
 	public boolean isExist(String name) {
 		// TODO Auto-generated method stub
 		Merchant merchant = get(name);
-		return merchant != null;
+		return merchant !=  null;
 	}
 
 	@Override

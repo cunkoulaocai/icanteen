@@ -9,11 +9,11 @@ public interface MerchantDAO {
 	int getTotal();
     void add(Merchant merchant);
     void update(Merchant merchant);
-    void delete(int id) ;
+    void delete(int id);
     Merchant get(int id);
     List<Merchant> list();
-    List<Merchant> list(int start, int count) ;
-    boolean isExist(String name) ;
-    Merchant get(String name) ;
-    Merchant get(String name, String password) ;
+    List<Merchant> list(int start, int count);
+    boolean isExist(String name);
+    Merchant get(String name);
+    Merchant get(String name, String password);
 }

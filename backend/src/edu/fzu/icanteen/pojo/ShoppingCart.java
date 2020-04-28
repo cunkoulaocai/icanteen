@@ -32,7 +32,7 @@ public class ShoppingCart {
         return merchantId;
     }
 
-    public void setMerchant(int merchantId) {
+    public void setMerchantId(int merchantId) {
         this.merchantId = merchantId;
     }
 
