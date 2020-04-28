@@ -20,8 +20,8 @@ public interface FoodImageDAO {
 
 	FoodImage get(int id);
 
-	List<FoodImage> list(Food p, String type);
+	List<FoodImage> list(Food food);
 
-	List<FoodImage> list(Food p, String type, int start, int count);
+	List<FoodImage> list(Food food, int start, int count);
 
 }

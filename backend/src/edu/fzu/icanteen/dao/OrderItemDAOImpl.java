@@ -4,18 +4,20 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.fzu.icanteen.pojo.Food;
-import edu.fzu.icanteen.pojo.FoodImage;
+import com.sun.org.apache.regexp.internal.recompile;
+
+import edu.fzu.icanteen.pojo.Order;
+import edu.fzu.icanteen.pojo.OrderItem;
 import edu.fzu.icanteen.util.DBUtil;
 
-public class FoodImageDAOImpl implements FoodImageDAO {
+public class OrderItemDAOImpl implements OrderItemDAO {
 
     @Override
 	public int getTotal() {
         int total = 0;
         try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
 
-            String sql = "select count(*) from FoodImage";
+            String sql = "select count(*) from OrderItem";
 
             ResultSet rs = s.executeQuery(sql);
             while (rs.next()) {
@@ -29,13 +31,14 @@ public class FoodImageDAOImpl implements FoodImageDAO {
     }
 
     @Override
-	public void add(FoodImage bean) {
+	public void add(OrderItem bean) {
 
 
-        String sql = "insert into FoodImage values(null,?,?)";
+        String sql = "insert into OrderItem values(null,?,?,?)";
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
-            ps.setInt(1, bean.getFood().getId());
-            ps.setString(2, bean.getUrl());
+            ps.setInt(1, bean.getOrder().getId());
+            ps.setInt(2, bean.getFoodId());
+            ps.setInt(3, bean.getNumber());
             ps.execute();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -50,7 +53,7 @@ public class FoodImageDAOImpl implements FoodImageDAO {
     }
 
     @Override
-	public void update(FoodImage bean) {
+	public void update(OrderItem bean) {
 
     }
 
@@ -59,7 +62,7 @@ public class FoodImageDAOImpl implements FoodImageDAO {
 
         try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
 
-            String sql = "delete from FoodImage where id = " + id;
+            String sql = "delete from orderitem where id = " + id;
 
             s.execute(sql);
 
@@ -70,23 +73,24 @@ public class FoodImageDAOImpl implements FoodImageDAO {
     }
 
     @Override
-	public FoodImage get(int id) {
-        FoodImage bean = new FoodImage();
+	public OrderItem get(int id) {
+        OrderItem bean = new OrderItem();
 
 
         try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
 
-            String sql = "select * from FoodImage where id = " + id;
+            String sql = "select * from OrderItem where id = " + id;
 
             ResultSet rs = s.executeQuery(sql);
 
             if (rs.next()) {
+                int orderId = rs.getInt("orderid");
                 int foodId = rs.getInt("foodId");
-                String url = rs.getString("url");
-                Food food = new FoodDAOImpl().get(foodId);
-                
-                bean.setFood(food);
-                bean.setUrl(url);
+                int number = rs.getInt("number");
+                Order order = new OrderDAOImpl().get(orderId);
+                bean.setOrder(order);
+                bean.setFoodId(foodId);
+                bean.setNumber(number);
                 bean.setId(id);
             }
 
@@ -98,19 +102,19 @@ public class FoodImageDAOImpl implements FoodImageDAO {
     }
 
     @Override
-	public List<FoodImage> list(Food food) {
-        return list(food, 0, Short.MAX_VALUE);
+	public List<OrderItem> list(Order order) {
+        return list(order, 0, Short.MAX_VALUE);
     }
 
     @Override
-	public List<FoodImage> list(Food food, int start, int count) {
-        List<FoodImage> beans = new ArrayList<FoodImage>();
+	public List<OrderItem> list(Order order, int start, int count) {
+        List<OrderItem> beans = new ArrayList<OrderItem>();
 
-        String sql = "select * from FoodImage where foodId  = ? order by id desc limit ?,? ";
+        String sql = "select * from OrderItem where orderId  = ? order by id desc limit ?,? ";
 
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
 
-            ps.setInt(1, food.getId());
+            ps.setInt(1, order.getId());
             ps.setInt(2, start);
             ps.setInt(3, count);
 
@@ -119,12 +123,14 @@ public class FoodImageDAOImpl implements FoodImageDAO {
 
             while (rs.next()) {
 
-                FoodImage bean = new FoodImage();
+                OrderItem bean = new OrderItem();
                 int id = rs.getInt(1);
-                String url = rs.getString("url");
+                int foodId = rs.getInt("foodId");
+                int number = rs.getInt("number");
                 
-                bean.setFood(food);
-                bean.setUrl(url);
+                bean.setOrder(order);
+                bean.setFoodId(foodId);
+                bean.setNumber(number);
                 bean.setId(id);
 
                 beans.add(bean);
