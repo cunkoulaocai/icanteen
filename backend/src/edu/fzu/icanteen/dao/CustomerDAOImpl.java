@@ -15,7 +15,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public int getTotal() {
 		int total = 0;
 		try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
-			String sql = "select count(*) from Customer";
+			String sql = "select count(*) from customer";
 			ResultSet rs = s.executeQuery(sql);
 			while (rs.next()) {
 				total = rs.getInt(1);
