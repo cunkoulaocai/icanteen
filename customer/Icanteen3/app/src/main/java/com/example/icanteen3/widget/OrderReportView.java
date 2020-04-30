@@ -1,4 +1,4 @@
-package com.example.icanteen3.widget;
+/*package com.example.icanteen3.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -69,3 +69,4 @@ public class OrderReportView extends FrameLayout {
         }
     }
 }
+*/
