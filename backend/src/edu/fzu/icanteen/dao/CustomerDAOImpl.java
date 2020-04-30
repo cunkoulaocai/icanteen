@@ -127,8 +127,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public boolean isExist(String name) {
-		Customer customer = get(name);
+	public boolean isExist(String name,String password) {
+		Customer customer = get(name,password);
 		return customer !=  null;
 	}
 
@@ -137,8 +137,36 @@ public class CustomerDAOImpl implements CustomerDAO {
 		return null;
 	}
 
-	public Customer get(String name, String password) {
-		return null;
+	
+	/*
+	 * connection = DBUtil.getConnection(); 
+	 * pstmt =connection.prepareStatement(sql);
+	 * pstmt.setString(1, bean.getPassword());
+	 * pstmt.setInt(2, bean.getId()); 
+	 * pstmt.executeUpdate();
+	 */
+	public Customer get(String user, String psd) {
+		Customer customer = null;
+		String sql = "SELECT * FROM customer WHERE name = ? and password = ?";
+		// 获取连接；创建PreparedSatemant对象
+		try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+			ps.setString(1, user);
+			ps.setString(2, psd);
+			ResultSet rs = ps.executeQuery(); // 得到结果集
+			
+			while (rs.next()) {
+				customer = new Customer();
+				int id = rs.getInt("id");
+				String name = rs.getString("name");
+				String password = rs.getString("password");
+				customer.setId(id);
+				customer.setName(name);
+				customer.setPassword(password);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return customer;
 	}
 
 }

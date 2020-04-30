@@ -19,7 +19,7 @@ public interface CustomerDAO {
     
     List<Customer> list(int start, int count);
     
-    boolean isExist(String name);
+    boolean isExist(String name,String password);
     
     Customer get(String name);
     
