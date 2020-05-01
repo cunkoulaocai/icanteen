@@ -6,7 +6,7 @@ import edu.fzu.icanteen.pojo.Coupon;
 
 public interface CouponDAO{
 	
-	int getTotal(int cid);
+	int getTotal(int customerID);
 
 	void add(Coupon bean);
 	
@@ -24,9 +24,9 @@ public interface CouponDAO{
 
 	Coupon get(String name);
 
-	List<Coupon> list(int cid);
+	List<Coupon> list(int customerID);
 
-	List<Coupon> list(int cid, int start, int count);
+	List<Coupon> list(int customerID, int start, int count);
 
 	List<Coupon> search(String keyword, int start, int count);
 
