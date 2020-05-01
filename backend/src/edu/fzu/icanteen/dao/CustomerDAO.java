@@ -23,6 +23,6 @@ public interface CustomerDAO {
     
     Customer get(String name);
     
-    Customer get(String name, String password);
+    Customer get(String studentId, String password);
     
 }
