@@ -10,14 +10,14 @@ import edu.fzu.icanteen.util.DBUtil;
 public class CouponDAOImpl implements CouponDAO {
 
     @Override
-	public int getTotal(int cid) {
+	public int getTotal(int customerID) {
         int total = 0;
         try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
         	String sql = null;
-        	if(cid  ==  0)    //不按类别
+        	if(customerID  ==  0)    //不按类别
         		sql = "select count(*) from Coupon where 1 = 1 " ;
         	else 
-        		sql = "select count(*) from Coupon where cid = " + cid;
+        		sql = "select count(*) from Coupon where customerID = " + customerID;
 
             ResultSet rs = s.executeQuery(sql);
             while (rs.next()) {
@@ -125,17 +125,17 @@ public class CouponDAOImpl implements CouponDAO {
     }
 
     @Override
-	public List<Coupon> list(int cid) {
-        return list(cid, 0, Short.MAX_VALUE);
+	public List<Coupon> list(int customerID) {
+        return list(customerID, 0, Short.MAX_VALUE);
     }
 
     @Override
-	public List<Coupon> list(int cid, int start, int count) {
+	public List<Coupon> list(int customerID, int start, int count) {
         List<Coupon> beans = new ArrayList<Coupon>();
-        String sql = "select * from Coupon where cid = ? order by id desc limit ?,? ";
+        String sql = "select * from Coupon where customerID = ? order by id desc limit ?,? ";
 
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
-            ps.setInt(1, cid);
+            ps.setInt(1, customerID);
             ps.setInt(2, start);
             ps.setInt(3, count);
 
