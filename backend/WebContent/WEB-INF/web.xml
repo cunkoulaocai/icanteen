@@ -13,6 +13,8 @@
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
   
+	
+	
     <servlet>
 		<description>This is the description of my J2EE component</description>
 		<display-name>This is the display name of my J2EE component</display-name>
@@ -26,6 +28,8 @@
 		<url-pattern>/servlet/LoginServlet</url-pattern>
 	</servlet-mapping>
 	
+	
+	
 	<servlet>
 		<description>This is the description of my J2EE component</description>
 		<display-name>This is the display name of my J2EE component</display-name>
@@ -37,6 +41,21 @@
 		<servlet-name>MerchantServlet</servlet-name>
 		<url-pattern>/servlet/MerchantServlet</url-pattern>
 	</servlet-mapping>
+	
+	
+	
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+        <servlet-name>MenuServlet</servlet-name>
+		<servlet-class>edu.fzu.icanteen.servlet.MenuServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>MenuServlet</servlet-name>
+		<url-pattern>/servlet/MenuServlet</url-pattern>
+	</servlet-mapping>
+	
 	
   
 </web-app>

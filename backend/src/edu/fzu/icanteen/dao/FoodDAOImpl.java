@@ -10,14 +10,14 @@ import edu.fzu.icanteen.util.DBUtil;
 public class FoodDAOImpl implements FoodDAO {
 
     @Override
-	public int getTotal(int cid) {
+	public int getTotal(int merchantId) {
         int total = 0;
         try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
         	String sql = null;
-        	if(cid == 0)    //不按类别
+        	if(merchantId == 0)    //不按类别
         		sql = "select count(*) from Food where 1 = 1 " ;
         	else 
-        		sql = "select count(*) from Food where cid = " + cid;
+        		sql = "select count(*) from Food where merchantId = " + merchantId;
 
             ResultSet rs = s.executeQuery(sql);
             while (rs.next()) {
@@ -124,17 +124,17 @@ public class FoodDAOImpl implements FoodDAO {
     }
 
     @Override
-	public List<Food> list(int cid) {
-        return list(cid, 0, Short.MAX_VALUE);
+	public List<Food> list(int merchantId) {
+        return list(merchantId, 0, Short.MAX_VALUE);
     }
 
     @Override
-	public List<Food> list(int cid, int start, int count) {
+	public List<Food> list(int mId, int start, int count) {
         List<Food> beans = new ArrayList<Food>();
-        String sql = "select * from Food where cid = ? order by id desc limit ?,? ";
+        String sql = "select * from Food where merchantId = ? order by id desc limit ?,? ";
 
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
-            ps.setInt(1, cid);
+            ps.setInt(1, mId);
             ps.setInt(2, start);
             ps.setInt(3, count);
 
