@@ -1,6 +1,5 @@
 package edu.fzu.icanteen.servlet;
 
-
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -13,11 +12,8 @@ import edu.fzu.icanteen.pojo.Customer;
 import edu.fzu.icanteen.dao.CustomerDAO;
 import edu.fzu.icanteen.dao.CustomerDAOImpl;
 
-
 public class LoginServlet extends HttpServlet {
 
-
-	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
@@ -28,19 +24,20 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("request--->"+request.getRequestURL()+"===="+request.getParameterMap().toString());
-		String username = request.getParameter("username"); // 获取客户端传过来的参数
+		String studentId = request.getParameter("studentId"); // 获取客户端传过来的参数
 		String password = request.getParameter("password");
 		response.setContentType("text/html;charset=utf-8");
-		if (username == null || username.equals("") || password == null || password.equals("")) {
+		
+		if (studentId == null || studentId.equals("") || password == null || password.equals("")) {
 			System.out.println("用户名或密码为空");
 			return;
 		} // 请求数据库
 		// 打开数据库连接
 		CustomerDAO customerDAO = new CustomerDAOImpl();
-		Customer customer = new Customer();
+		Customer customer = customerDAO.get(studentId, password);
 		BaseBean data = new BaseBean(); // 基类对象，回传给客户端的json对象
 		
-		if (customerDAO.isExist(username, password)) {
+		if (customer != null) {
 			// 判断账号是否存在
 			data.setCode(1);
 			data.setData(customer);

@@ -6,6 +6,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.XPath.Step;
+
 public class CustomerDAOImpl implements CustomerDAO {
 	private Connection connection = null;
 	private PreparedStatement pstmt = null;
@@ -145,28 +147,34 @@ public class CustomerDAOImpl implements CustomerDAO {
 	 * pstmt.setInt(2, bean.getId()); 
 	 * pstmt.executeUpdate();
 	 */
-	public Customer get(String user, String psd) {
+	public Customer get(String studentId, String password) {
 		Customer customer = null;
-		String sql = "SELECT * FROM customer WHERE name = ? and password = ?";
+		String sql = "SELECT * FROM customer WHERE studentid = ? and password = ?";
 		// 获取连接；创建PreparedSatemant对象
 		try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
-			ps.setString(1, user);
-			ps.setString(2, psd);
+			ps.setString(1, studentId);
+			ps.setString(2, password);
 			ResultSet rs = ps.executeQuery(); // 得到结果集
 			
 			while (rs.next()) {
 				customer = new Customer();
 				int id = rs.getInt("id");
+				String sId = rs.getString("studentid");
+				String psd = rs.getString("password");
 				String name = rs.getString("name");
-				String password = rs.getString("password");
+				int point = rs.getInt("point");
+				int state = rs.getInt("state");
 				customer.setId(id);
+				customer.setStudentId(sId);
 				customer.setName(name);
-				customer.setPassword(password);
+				customer.setPassword(psd);
+				customer.setPonit(point);
+				customer.setState(state);
+				break;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return customer;
 	}
-
 }
