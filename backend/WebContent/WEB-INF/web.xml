@@ -57,5 +57,19 @@
 	</servlet-mapping>
 	
 	
+	
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+        <servlet-name>CouponServlet</servlet-name>
+		<servlet-class>edu.fzu.icanteen.servlet.CouponServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>CouponServlet</servlet-name>
+		<url-pattern>/servlet/CouponServlet</url-pattern>
+	</servlet-mapping>
+	
+	
   
 </web-app>
