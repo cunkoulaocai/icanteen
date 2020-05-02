@@ -16,9 +16,9 @@ public interface CommentDAO {
 
 	Comment get(int id);
 
-	List<Comment> list(int customerid);
+	List<Comment> list(int merchantid);
 
-	List<Comment> list(int customerid, int start, int count);
+	List<Comment> list(int merchantid, int start, int count);
 
 	List<Comment> list();
 
