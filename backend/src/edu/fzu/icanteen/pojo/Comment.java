@@ -6,11 +6,11 @@ public class Comment {
 	//自增主键
 	private int id;
 	//用户ID
-	private String customerid;
+	private int customerid;
 	//商家ID
-	private String merchantid;
+	private int merchantid;
 	//菜品ID
-	private String foodid;
+	private int foodid;
 	//评论内容
 	private String content;
 	//发送时间
@@ -36,27 +36,27 @@ public class Comment {
 		this.id = id;
 	}
 	
-	public String getCustomerid() {
+	public int getCustomerid() {
 		return customerid;
 	}
 
-	public void setCustomerid(String customerid) {
+	public void setCustomerid(int customerid) {
 		this.customerid = customerid;
 	}
 	
-	public String getMerchantid() {
+	public int getMerchantid() {
 		return merchantid;
 	}
 
-	public void setMerchantid(String merchantid) {
+	public void setMerchantid(int merchantid) {
 		this.merchantid = merchantid;
 	}
 	
-	public String getFoodid() {
+	public int getFoodid() {
 		return foodid;
 	}
 
-	public void setFoodid(String foodid) {
+	public void setFoodid(int foodid) {
 		this.foodid = foodid;
 	}
 	
