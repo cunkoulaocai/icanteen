@@ -27,8 +27,8 @@ public class CouponServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("request--->"+request.getRequestURL()+"===="+request.getParameterMap().toString());
-		String rmc = request.getParameter("customerID"); // 获取客户端传过来的参数
-		int customerID = 0;
+		String rmc = request.getParameter("customerId"); // 获取客户端传过来的参数
+		int customerId = 0;
 		response.setContentType("text/html;charset=utf-8");
 		
 		if (rmc == null || rmc.equals("")) {
@@ -36,12 +36,12 @@ public class CouponServlet extends HttpServlet {
 			return;
 		} 
 		else {
-			customerID = Integer.parseInt(rmc);
+			customerId = Integer.parseInt(rmc);
 		}
 		// 请求数据库
 		// 打开数据库连接
 		CouponDAO couponDAO = new CouponDAOImpl();
-		List<Coupon> coupons = couponDAO.list(customerID);	
+		List<Coupon> coupons = couponDAO.list(customerId);	
 		BaseBean data = new BaseBean(); 			
 			if (coupons != null) {
 				// 判断代金卷是否存在
