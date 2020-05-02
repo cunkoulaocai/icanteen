@@ -135,5 +135,45 @@ public class FoodImageDAOImpl implements FoodImageDAO {
         }
         return beans;
     }
+    
+    @Override
+   	public List<FoodImage> list(int fId) {
+           return list(fId, 0, Short.MAX_VALUE);
+       }
+
+       @Override
+   	public List<FoodImage> list(int foodId, int start, int count) {
+           List<FoodImage> beans = new ArrayList<FoodImage>();
+
+           String sql = "select * from FoodImage where foodId  = ? order by id desc limit ?,? ";
+
+           try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+
+               ps.setInt(1, foodId);
+               ps.setInt(2, start);
+               ps.setInt(3, count);
+
+
+               ResultSet rs = ps.executeQuery();
+
+               while (rs.next()) {
+
+                   FoodImage bean = new FoodImage();
+                   int id = rs.getInt(1);
+                   String url = rs.getString("url");
+                   Food food = new FoodDAOImpl().get(foodId);
+                   
+                   bean.setFood(food);
+                   bean.setUrl(url);
+                   bean.setId(id);
+
+                   beans.add(bean);
+               }
+           } catch (SQLException e) {
+
+               e.printStackTrace();
+           }
+           return beans;
+       }
 
 }

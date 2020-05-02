@@ -23,5 +23,9 @@ public interface FoodImageDAO {
 	List<FoodImage> list(Food food);
 
 	List<FoodImage> list(Food food, int start, int count);
+	
+	List<FoodImage> list(int fId);
+
+	List<FoodImage> list(int fId, int start, int count);
 
 }

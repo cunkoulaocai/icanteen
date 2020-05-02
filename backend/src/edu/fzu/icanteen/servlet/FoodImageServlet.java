@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import edu.fzu.icanteen.pojo.Food;
+import edu.fzu.icanteen.pojo.FoodImage;
 import edu.fzu.icanteen.dao.FoodDAO;
 import edu.fzu.icanteen.dao.FoodDAOImpl;
+import edu.fzu.icanteen.dao.FoodImageDAO;
+import edu.fzu.icanteen.dao.FoodImageDAOImpl;
 
 public class FoodImageServlet extends HttpServlet {
 
@@ -36,14 +39,14 @@ public class FoodImageServlet extends HttpServlet {
 			foodId = Integer.parseInt(fId);
 		}
 
-		FoodDAO foodDAO = new FoodDAOImpl();
-		List<Food> foods = foodDAO.list(foodId); 
+		FoodImageDAO foodImageDAO = new FoodImageDAOImpl();
+		List<FoodImage> foodImages = foodImageDAO.list(foodId); 
 		BaseBean data = new BaseBean(); 
 		
-		if (foods != null) {
+		if (foodImages != null) {
 			// 判断商家是否存在
 			data.setCode(1);
-			data.setData(foods);
+			data.setData(foodImages);
 			data.setMsg("菜品图片查找成功");
 		} else {
 			data.setMsg("菜品ID错误");
