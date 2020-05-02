@@ -28,7 +28,7 @@
             tools:text="代金券" />
 
         <TextView
-            android:id="@+id/txt_name"
+            android:id="@+id/merchant_name"
             style="@style/Txt.Main"
             android:layout_marginLeft="@dimen/spacing_minor"
             android:layout_marginRight="@dimen/spacing_minor"
@@ -41,7 +41,7 @@
             />
 
         <TextView
-            android:id="@+id/txt_price"
+            android:id="@+id/txt_Completetime"
             style="@style/Txt.Auxiliary"
             android:layout_width="70dp"
             android:textColor="@color/orange"
@@ -50,7 +50,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/txt_desc"
+        android:id="@+id/txt_ordertime"
         style="@style/Txt.AuxiliaryInfo"
         android:layout_marginTop="@dimen/spacing_minor"
         tools:text="2020-4-29至2020-5-29" />
