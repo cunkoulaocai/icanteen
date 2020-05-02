@@ -26,19 +26,19 @@ public class CommentServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("request--->"+request.getRequestURL()+"===="+request.getParameterMap().toString());
-		String mid = request.getParameter("merchantid");
-		int merchantid = 0;
+		String mid = request.getParameter("merchantId");
+		int merchantId = 0;
 		response.setContentType("text/html;charset=utf-8");
 		
 		if (mid == null || mid.equals("")) {
 			System.out.println("商家ID错误");
 			return;
 		} else {
-			merchantid = Integer.parseInt(mid);
+			merchantId = Integer.parseInt(mid);
 		}
 
 		CommentDAO commentDAO = new CommentDAOImpl();
-		List<Comment> comments = commentDAO.list(merchantid); 
+		List<Comment> comments = commentDAO.list(merchantId); 
 		BaseBean data = new BaseBean(); 
 		
 		if (comments != null) {

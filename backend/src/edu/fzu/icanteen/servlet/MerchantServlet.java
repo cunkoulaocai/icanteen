@@ -24,7 +24,7 @@ public class MerchantServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("request--->"+request.getRequestURL()+"===="+request.getParameterMap().toString());
-		String rmc = request.getParameter("MerchantId");
+		String rmc = request.getParameter("merchantId");
 		int merchantId = 0;
 		response.setContentType("text/html;charset=utf-8");
 		
