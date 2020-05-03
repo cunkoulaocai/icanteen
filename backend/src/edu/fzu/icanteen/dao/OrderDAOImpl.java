@@ -15,9 +15,9 @@ public class OrderDAOImpl implements OrderDAO {
         try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
         	String sql = null;
         	if(cid == 0)    //不按类别
-        		sql = "select count(*) from Order where 1 = 1 " ;
+        		sql = "select count(*) from Orders where 1 = 1 " ;
         	else 
-        		sql = "select count(*) from Order where cid = " + cid;
+        		sql = "select count(*) from Orders where cid = " + cid;
 
             ResultSet rs = s.executeQuery(sql);
             while (rs.next()) {
@@ -33,7 +33,7 @@ public class OrderDAOImpl implements OrderDAO {
     @Override
 	public void add(Order bean) {
 
-        String sql = "insert into Order values(null,?,?,?,?,?,?)";
+        String sql = "insert into Orders values(null,?,?,?,?,?,?)";
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
 
             ps.setInt(1, bean.getCustomerId());
@@ -58,7 +58,7 @@ public class OrderDAOImpl implements OrderDAO {
     @Override
 	public void update(Order bean) {
 
-        String sql = "update Order set customerid = ?, merchantid = ?, appointment = ?, ordertime = ?, cancel = ?, closetime = ?, where id = ?";
+        String sql = "update Orders set customerid = ?, merchantid = ?, appointment = ?, ordertime = ?, cancel = ?, closetime = ?, where id = ?";
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
 
         	ps.setInt(1, bean.getCustomerId());
@@ -82,7 +82,7 @@ public class OrderDAOImpl implements OrderDAO {
 
         try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
 
-            String sql = "delete from Order where id = " + id;
+            String sql = "delete from Orders where id = " + id;
 
             s.execute(sql);
 
@@ -98,7 +98,7 @@ public class OrderDAOImpl implements OrderDAO {
 
         try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
 
-            String sql = "select * from Order where id = " + id;
+            String sql = "select * from Orders where id = " + id;
 
             ResultSet rs = s.executeQuery(sql);
 
@@ -135,7 +135,7 @@ public class OrderDAOImpl implements OrderDAO {
     @Override
 	public List<Order> list(int cid, int start, int count) {
         List<Order> beans = new ArrayList<Order>();
-        String sql = "select * from Order where cid = ? order by id desc limit ?,? ";
+        String sql = "select * from Orders where cid = ? order by id desc limit ?,? ";
 
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
             ps.setInt(1, cid);
@@ -179,7 +179,7 @@ public class OrderDAOImpl implements OrderDAO {
 	public List<Order> list(int start, int count) {
         List<Order> beans = new ArrayList<Order>();
 
-        String sql = "select * from Order limit ?,? ";
+        String sql = "select * from Orders limit ?,? ";
 
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
 
@@ -220,7 +220,7 @@ public class OrderDAOImpl implements OrderDAO {
 
         if (null  ==  keyword || 0  ==  keyword.trim().length())
             return beans;
-        String sql = "select * from Order where name like ? limit ?,? ";
+        String sql = "select * from Orders where name like ? limit ?,? ";
 
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
             ps.setString(1, "%" + keyword.trim() + "%");
