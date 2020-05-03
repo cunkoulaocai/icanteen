@@ -97,5 +97,30 @@
 	</servlet-mapping>
 	
 	
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+        <servlet-name>UpdateFoodServlet</servlet-name>
+		<servlet-class>edu.fzu.icanteen.servlet.UpdateFoodServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>UpdateFoodServlet</servlet-name>
+		<url-pattern>/servlet/UpdateFoodServlet</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+        <servlet-name>MerchantLoginServlet</servlet-name>
+		<servlet-class>edu.fzu.icanteen.servlet.MerchantLoginServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>MerchantLoginServlet</servlet-name>
+		<url-pattern>/servlet/MerchantLoginServlet</url-pattern>
+	</servlet-mapping>
+	
   
 </web-app>
