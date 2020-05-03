@@ -1,6 +1,7 @@
 package edu.fzu.icanteen.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -39,24 +40,37 @@ public class OrderServlet extends HttpServlet {
 		} else {
 			cid = Integer.parseInt(customerid);
 		}
-		List<Order> orders = orderDAO.list(cid);
-		OrderItemDAO orderItemDAO = new OrderItemDAOImpl();
-		List<OrderItem> orderItem;
+		
 //		for(Order order:orders) {
 //			orderItem = orderItemDAO.list(order);
 //			order.setOrderItems(orderItem);
 //		}
-		BaseBean data = new BaseBean(); 
-		if (orders != null) {
-			//判断用户是否存在
-			data.setCode(1);
-			data.setData(orders);
-			data.setMsg("订单查找成功");
-		} else {
-			data.setMsg("订单查找错误");
+		OrderItemDAO orderItemDAO = new OrderItemDAOImpl();
+		List<Order> orders = orderDAO.list(cid);
+		List<OrderItem> orderItems = new ArrayList<OrderItem>();
+		String json = "";
+		for(Order order:orders) {
+			orderItems = orderItemDAO.list(order);
+			order.setOrderItems(orderItems);
+			json=json+"{\"orderid\":"+order.getId()+" \"customerid\":"+order.getCustomerId()+" \"merchantid\":"+order.getMerchantId()
+			+" \"appointment:"+order.getAppointment()+" \"ordertime\":"+order.getOrderTime()+" \"cancel\":"+order.getCancel()+" \"closetime\":"+order.getCloseTime();
+			json+=" \"orderitem\":[";
+			for(OrderItem orderItem:orderItems) {
+				json+="{\"id\":"+orderItem.getId()+" \"foodid\":"+orderItem.getFoodId()+" \"number\":"+orderItem.getNumber()+"}";
+			}
+			json+="]}";
 		}
-		Gson gson = new Gson();
-		String json = gson.toJson(data);
+//		BaseBean data = new BaseBean(); 
+//		if (orders != null) {
+//			//判断用户是否存在
+//			data.setCode(1);
+//			data.setData(orders);
+//			data.setMsg("订单查找成功");
+//		} else {
+//			data.setMsg("订单查找错误");
+//		}
+//		Gson gson = new Gson();
+//		String json = gson.toJson(data);
 		 //将对象转化成json字符串
 		try {
 			response.getWriter().println(json);
