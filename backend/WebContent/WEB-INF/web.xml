@@ -70,8 +70,6 @@
 		<url-pattern>/servlet/CouponServlet</url-pattern>
 	</servlet-mapping>
 	
-	
-	
 	<servlet>
 		<description>This is the description of my J2EE component</description>
 		<display-name>This is the display name of my J2EE component</display-name>
@@ -96,6 +94,17 @@
 		<url-pattern>/servlet/FoodImageServlet</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+        <servlet-name>CommentUpdateServlet</servlet-name>
+		<servlet-class>edu.fzu.icanteen.servlet.CommentUpdateServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>CommentUpdateServlet</servlet-name>
+		<url-pattern>/servlet/CommentUpdateServlet</url-pattern>
+	</servlet-mapping>
 	
 	<servlet>
 		<description>This is the description of my J2EE component</description>
@@ -121,6 +130,5 @@
 		<servlet-name>MerchantLoginServlet</servlet-name>
 		<url-pattern>/servlet/MerchantLoginServlet</url-pattern>
 	</servlet-mapping>
-	
   
 </web-app>
