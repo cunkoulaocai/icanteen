@@ -57,7 +57,7 @@ public class ShoppingCartDAOImpl implements ShoppingCartDAO {
     @Override
 	public void update(ShoppingCart bean) {
 
-        String sql = "update shoppingcart set customerid = ?, merchantid = ?, foodid = ?, number = ?, where id = ?";
+        String sql = "update shoppingcart set customerid = ?, merchantid = ?, foodid = ?, number = ? where id = ??";
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
 
         	ps.setInt(1, bean.getCustomerId());

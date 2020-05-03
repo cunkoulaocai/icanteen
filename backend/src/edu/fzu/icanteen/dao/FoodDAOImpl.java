@@ -57,7 +57,7 @@ public class FoodDAOImpl implements FoodDAO {
     @Override
 	public void update(Food bean) {
 
-        String sql = "update Food set name =  ?, merchantid = ?, description = ?,price = ?,quantity = ?, where id = ?";
+        String sql = "update Food set name =  ?, merchantid = ?, description = ?,price = ?,quantity = ? where id = ?";
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
 
         	ps.setString(1, bean.getName());
