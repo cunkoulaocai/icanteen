@@ -42,7 +42,7 @@ public class CommentDAOImpl implements CommentDAO {
 	@Override
 	public void add(Comment bean) {
 		// TODO Auto-generated method stub
-		String sql = "insert into comment values(null ,? ,? ,? ,? , ?, ?, ?, ?)";
+		String sql = "insert into comment values(null ,? ,? ,? ,? , ?, ?, ?, ?, ?, ?, ?)";
 		try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
 			ps.setInt(1, bean.getCustomerid());
 			ps.setInt(2, bean.getMerchantid());
@@ -70,7 +70,7 @@ public class CommentDAOImpl implements CommentDAO {
 	@Override
 	public void update(Comment bean) {
 		// TODO Auto-generated method stub
-		String sql = "update Comment set customerid = ?, merchantid = ?, foodid = ?, content = ?, sendtime = ?, overallscore = ?,attitudescore = ?,tastescore = ?,pricescore = ?,waitingtime = ?,state = ?, where id = ?";
+		String sql = "update Comment set customerid = ?, merchantid = ?, foodid = ?, content = ?, sendtime = ?, overallscore = ?,attitudescore = ?,tastescore = ?,pricescore = ?,waitingtime = ?,state = ? where id = ?";
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
 
         	ps.setInt(1, bean.getCustomerid());
