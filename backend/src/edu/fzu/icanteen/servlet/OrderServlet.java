@@ -12,7 +12,10 @@ import com.google.gson.Gson;
 
 import edu.fzu.icanteen.dao.OrderDAO;
 import edu.fzu.icanteen.dao.OrderDAOImpl;
+import edu.fzu.icanteen.dao.OrderItemDAO;
+import edu.fzu.icanteen.dao.OrderItemDAOImpl;
 import edu.fzu.icanteen.pojo.Order;
+import edu.fzu.icanteen.pojo.OrderItem;
 
 public class OrderServlet extends HttpServlet {
 
@@ -37,8 +40,13 @@ public class OrderServlet extends HttpServlet {
 			cid = Integer.parseInt(customerid);
 		}
 		List<Order> orders = orderDAO.list(cid);
+		OrderItemDAO orderItemDAO = new OrderItemDAOImpl();
+		List<OrderItem> orderItem;
+//		for(Order order:orders) {
+//			orderItem = orderItemDAO.list(order);
+//			order.setOrderItems(orderItem);
+//		}
 		BaseBean data = new BaseBean(); 
-		
 		if (orders != null) {
 			//判断用户是否存在
 			data.setCode(1);
@@ -49,7 +57,7 @@ public class OrderServlet extends HttpServlet {
 		}
 		Gson gson = new Gson();
 		String json = gson.toJson(data);
-		// 将对象转化成json字符串
+		 //将对象转化成json字符串
 		try {
 			response.getWriter().println(json);
 			// 将json数据传给客户端

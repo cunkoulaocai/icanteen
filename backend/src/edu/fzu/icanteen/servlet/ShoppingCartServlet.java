@@ -30,16 +30,22 @@ public class ShoppingCartServlet extends HttpServlet {
 		String customerid = request.getParameter("customerid");
 		response.setContentType("text/html;charset=utf-8");
 		ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAOImpl();
-		int cid = Integer.parseInt(customerid);
+		int cid = 1;
+		if (customerid == null || customerid.equals("")) {
+			System.out.println("用户不存在");
+			return;
+		} else {
+			cid = Integer.parseInt(customerid);
+		}
 		List<ShoppingCart> shoppingCarts = shoppingCartDAO.list(cid);
 		BaseBean data = new BaseBean(); // 基类对象，回传给客户端的json对象
 		
 		if (shoppingCarts != null) {
 			data.setCode(1);
 			data.setData(shoppingCarts);
-			data.setMsg("登陆成功");
+			data.setMsg("购物车查找成功");
 		} else {
-			data.setMsg("登陆失败，用户名或密码错误");
+			data.setMsg("购物车查找失败");
 		}
 		Gson gson = new Gson();
 		// 将对象转化成json字符串
