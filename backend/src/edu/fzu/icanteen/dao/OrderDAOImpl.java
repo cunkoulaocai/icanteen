@@ -58,7 +58,7 @@ public class OrderDAOImpl implements OrderDAO {
     @Override
 	public void update(Order bean) {
 
-        String sql = "update Orders set customerid = ?, merchantid = ?, appointment = ?, ordertime = ?, cancel = ?, closetime = ?, where id = ?";
+        String sql = "update Orders set customerid = ?, merchantid = ?, appointment = ?, ordertime = ?, cancel = ?, closetime = ? where id = ??";
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
 
         	ps.setInt(1, bean.getCustomerId());

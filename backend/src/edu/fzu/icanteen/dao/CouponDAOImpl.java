@@ -57,7 +57,7 @@ public class CouponDAOImpl implements CouponDAO {
     @Override
 	public void update(Coupon bean) {
 
-        String sql = "update Coupon set merchantid = ?, customerid = ?, threshold = ?, voucher = ?, serviceLife = ?, where id = ?";
+        String sql = "update Coupon set merchantid = ?, customerid = ?, threshold = ?, voucher = ?, serviceLife = ? where id = ??";
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
 
         	ps.setInt(1, bean.getMerchantId());
