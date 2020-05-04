@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/light_gray_bg"
+    >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_size"
+        android:background="@color/divider"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:background="@color/dark_gray_bg"
+        >
+
+        <LinearLayout
+            android:id="@+id/layout_shopping_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_minor"
+            android:gravity="center_vertical"
+            >
+
+            <TextView
+                android:id="@+id/txt_selected_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_minor"
+                android:layout_marginRight="@dimen/spacing_minor"
+                android:text="￥60"
+                android:textColor="@color/orange_text"
+                android:textSize="36sp" />
+
+            <TextView
+                android:id="@+id/txt_total_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已优惠￥60"
+                android:textColor="@color/secondary_text"
+                android:textSize="@dimen/font_normal" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
+
+        <Button
+            android:id="@+id/btn_settle"
+            style="@style/Widget.LazyOrder.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="66dp"
+            android:layout_margin="@dimen/spacing_minor"
+            android:background="@color/green"
+            android:enabled="false"
+            android:text="@string/btn_confirm_order"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>

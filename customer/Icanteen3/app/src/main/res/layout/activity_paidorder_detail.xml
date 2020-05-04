@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardview_light_background"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_toolbar" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fadingEdge="none"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!-- 用户信息板块 -->
+            <include layout="@layout/include_order_user_info" />
+            <!-- 商品信息板块 -->
+            <include layout="@layout/include_order_product_info" />
+            <!-- 代金券信息模块-->
+            <include layout="@layout/include_view_order_report_discount" />
+            <!-- 总价信息模块-->
+            <include layout="@layout/include_view_order_report_price" />
+            <!-- 订单信息板块 -->
+            <include layout="@layout/include_order_related_info" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/buttonstyle"
+                android:text="评价"
+                android:textColor="@color/colorPrimary" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>
