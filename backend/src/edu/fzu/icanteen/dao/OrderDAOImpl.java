@@ -318,7 +318,26 @@ public class OrderDAOImpl implements OrderDAO {
     }
 	
 	public List<Order> listByMerchant(int mid) {
-        return list(mid, 0, Short.MAX_VALUE);
+        List<Order> orders = new ArrayList<Order>();
+        String sql = "select * from orders where merchantid = " +mid;
+        try(Connection conn = DBUtil.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+        	ResultSet rs = ps.executeQuery();
+        	while(rs.next()) {
+        		Order order = new Order();
+        		order.setId(rs.getInt("id"));
+        		order.setCustomerId(rs.getInt("customerid"));
+                order.setMerchantId(rs.getInt("merchantid"));
+                order.setAppointment(rs.getDate("appointment"));
+                order.setOrderTime(rs.getDate("ordertime"));
+                order.setCancel(rs.getInt("cancel"));
+                order.setCloseTime(rs.getDate("closetime"));
+                orders.add(order);
+        	}
+        } catch (Exception e) {
+			// TODO: handle exception
+        	e.printStackTrace();
+		}
+        return orders;
     }
 
 }

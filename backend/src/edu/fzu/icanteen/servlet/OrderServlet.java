@@ -43,7 +43,7 @@ public class OrderServlet extends HttpServlet {
 		BaseBean data = new BaseBean();
 		int cid = 0;
 		int mid = 0;
-		
+
 		if (flag == null || flag.equals("") || id == null || id.equals("")) {
 			data.setMsg("falg或者id为空");
 		} else {
@@ -56,7 +56,8 @@ public class OrderServlet extends HttpServlet {
 					OrderSql orderSql = orderToOrdersql(order);
 					orderSqls.add(orderSql);
 				}
-			} else if (flag.equals("merchant")) {
+			}
+			if (flag.equals("merchant")) {
 				mid = Integer.parseInt(id);
 				orders = orderDAO.listByMerchant(mid);
 				for (Order order : orders) {
