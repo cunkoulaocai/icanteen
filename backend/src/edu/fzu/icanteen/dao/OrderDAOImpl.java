@@ -10,14 +10,14 @@ import edu.fzu.icanteen.util.DBUtil;
 public class OrderDAOImpl implements OrderDAO {
 
     @Override
-	public int getTotal(int cid) {
+	public int getTotal(int customerId) {
         int total = 0;
         try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
         	String sql = null;
-        	if(cid == 0)    //不按类别
+        	if(customerId == 0)    //不按类别
         		sql = "select count(*) from Orders where 1 = 1 " ;
         	else 
-        		sql = "select count(*) from Orders where customerid = " + cid;
+        		sql = "select count(*) from Orders where customerId = " + customerId;
 
             ResultSet rs = s.executeQuery(sql);
             while (rs.next()) {
@@ -58,7 +58,7 @@ public class OrderDAOImpl implements OrderDAO {
     @Override
 	public void update(Order bean) {
 
-        String sql = "update Orders set customerid = ?, merchantid = ?, appointment = ?, ordertime = ?, cancel = ?, closetime = ? where id = ??";
+        String sql = "update Orders set customerId = ?, merchantid = ?, appointment = ?, ordertime = ?, cancel = ?, closetime = ? where id = ??";
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
 
         	ps.setInt(1, bean.getCustomerId());
@@ -128,17 +128,17 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-	public List<Order> list(int cid) {
-        return list(cid, 0, Short.MAX_VALUE);
+	public List<Order> list(int customerId) {
+        return list(customerId, 0, Short.MAX_VALUE);
     }
 
     @Override
-	public List<Order> list(int cid, int start, int count) {
+	public List<Order> list(int cId, int start, int count) {
         List<Order> beans = new ArrayList<Order>();
-        String sql = "select * from Orders where customerid = ? order by id desc limit ?,? ";
+        String sql = "select * from Orders where customerId = ? order by id desc limit ?,? ";
 
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
-            ps.setInt(1, cid);
+            ps.setInt(1, cId);
             ps.setInt(2, start);
             ps.setInt(3, count);
 
