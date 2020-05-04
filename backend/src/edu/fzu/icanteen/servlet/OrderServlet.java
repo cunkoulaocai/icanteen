@@ -70,8 +70,7 @@ public class OrderServlet extends HttpServlet {
 //			data.setMsg("订单查找错误");
 //		}
 //		Gson gson = new Gson();
-//		String json = gson.toJson(data);
-		 //将对象转化成json字符串
+//		String json = gson.toJson(data);  //将对象转化成json字符串
 		try {
 			response.getWriter().println(json);
 			// 将json数据传给客户端
