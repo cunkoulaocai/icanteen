@@ -1,10 +1,12 @@
 package edu.fzu.icanteen.dao;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.sun.org.apache.regexp.internal.recompile;
 
 import edu.fzu.icanteen.pojo.Order;
 import edu.fzu.icanteen.pojo.OrderItem;

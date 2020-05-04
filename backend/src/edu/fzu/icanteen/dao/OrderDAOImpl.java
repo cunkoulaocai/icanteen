@@ -17,7 +17,7 @@ public class OrderDAOImpl implements OrderDAO {
         	if(cid == 0)    //不按类别
         		sql = "select count(*) from Orders where 1 = 1 " ;
         	else 
-        		sql = "select count(*) from Orders where cid = " + cid;
+        		sql = "select count(*) from Orders where customerid = " + cid;
 
             ResultSet rs = s.executeQuery(sql);
             while (rs.next()) {
@@ -135,7 +135,7 @@ public class OrderDAOImpl implements OrderDAO {
     @Override
 	public List<Order> list(int cid, int start, int count) {
         List<Order> beans = new ArrayList<Order>();
-        String sql = "select * from Orders where cid = ? order by id desc limit ?,? ";
+        String sql = "select * from Orders where customerid = ? order by id desc limit ?,? ";
 
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
             ps.setInt(1, cid);
