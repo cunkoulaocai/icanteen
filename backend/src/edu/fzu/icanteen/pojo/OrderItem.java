@@ -4,7 +4,7 @@ public class OrderItem {
 	//自增主键
     private int id;
     //订单id
-    private int orderId;
+    private Order order;
     //食物id
     private int foodId;
     //数量
@@ -18,12 +18,12 @@ public class OrderItem {
         this.id = id;
     }
     
-    public int getOrderId() {
-        return orderId;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setOrder(int orderId) {
-        this.orderId = orderId;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public int getFoodId() {

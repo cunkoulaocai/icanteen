@@ -1,27 +1,31 @@
 package edu.fzu.icanteen.pojo;
 
+
 public class FoodImage {
 	//自增主键
     private int id;
-    //食物id
-    private int foodId;
+    //食物
+    private Food food;
     //URL
     private String url;
     
+
     public int getId() {
         return id;
     }
+
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public int getFoodId() {
-        return foodId;
+
+    public Food getFood() {
+        return food;
     }
 
-    public void setFoodId(int foodId) {
-        this.foodId = foodId;
+    public void setFood(Food food) {
+        this.food = food;
     }
     
     public String getUrl() {

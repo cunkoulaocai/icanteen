@@ -1,6 +1,6 @@
 package edu.fzu.icanteen.pojo;
 
-public class Administraor {
+public class Administrator {
 	//自增主键
     private int id;
     //姓名

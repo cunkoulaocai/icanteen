@@ -14,7 +14,7 @@ public class Coupon {
     //金额
     private double voucher;
     //有效期限
-    private Date servicelife;
+    private Date serviceLife;
     
     public int getId() {
         return id;
@@ -32,11 +32,11 @@ public class Coupon {
         this.merchantId = merchantId;
     }
     
-    public int getSustomerId() {
+    public int getCustomerId() {
         return customerId;
     }
 
-    public void setSustomerId(int customerId) {
+    public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
     
@@ -56,11 +56,11 @@ public class Coupon {
         this.voucher = voucher;
     }
 
-    public Date getServicelife() {
-        return servicelife;
+    public Date getServiceLife() {
+        return serviceLife;
     }
 
-    public void setServicelife(Date servicelife) {
-        this.servicelife = servicelife;
+    public void setServicelife(Date serviceLife) {
+        this.serviceLife = serviceLife;
     }
 }
