@@ -25,7 +25,7 @@ public class OrderServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doPost(request, response);
+			doPost(request, response);
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public class OrderServlet extends HttpServlet {
 					orderSqls.add(orderSql);
 				}
 			}
-			if (flag.equals("merchant")) {
+			else if (flag.equals("merchant")) {
 				mid = Integer.parseInt(id);
 				orders = orderDAO.listByMerchant(mid);
 				for (Order order : orders) {
@@ -67,16 +67,21 @@ public class OrderServlet extends HttpServlet {
 					orderSqls.add(orderSql);
 				}
 			}
+			
+			else {
+				data.setMsg("flag设置错误");
+			}
+			
 		}
-
-		if (orderSqls.equals("")) {
+		
+		if (orderSqls.isEmpty() && data.getMsg().isEmpty()) {
 			data.setMsg("没有订单信息");
-		} else {
+		} else if(!orderSqls.isEmpty()) {
 			data.setCode(1);
 			data.setMsg("订单查询成功");
 			data.setData(orderSqls);
 		}
-
+		
 		Gson gson = new Gson();
 		String json = gson.toJson(data);
 
