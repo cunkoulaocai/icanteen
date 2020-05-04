@@ -130,8 +130,20 @@
 		<servlet-name>MerchantLoginServlet</servlet-name>
 		<url-pattern>/servlet/MerchantLoginServlet</url-pattern>
 	</servlet-mapping>
-  
-  	<servlet>
+	
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+        <servlet-name>ShoppingCartUpdateServlet</servlet-name>
+		<servlet-class>edu.fzu.icanteen.servlet.ShoppingCartUpdateServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ShoppingCartUpdateServlet</servlet-name>
+		<url-pattern>/servlet/ShoppingCartUpdateServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<description>This is the description of my J2EE component</description>
 		<display-name>This is the display name of my J2EE component</display-name>
 		<servlet-name>OrderServlet</servlet-name>
@@ -144,15 +156,17 @@
 		<url-pattern>/servlet/OrderServlet</url-pattern>
 	</servlet-mapping>
 	
-		<servlet>
+	<servlet>
 		<description>This is the description of my J2EE component</description>
 		<display-name>This is the display name of my J2EE component</display-name>
-        <servlet-name>ShoppingCartServlet</servlet-name>
+		<servlet-name>ShoppingCartServlet</servlet-name>
 		<servlet-class>edu.fzu.icanteen.servlet.ShoppingCartServlet</servlet-class>
 	</servlet>
+
 
 	<servlet-mapping>
 		<servlet-name>ShoppingCartServlet</servlet-name>
 		<url-pattern>/servlet/ShoppingCartServlet</url-pattern>
 	</servlet-mapping>
+  
 </web-app>

@@ -17,69 +17,98 @@ import edu.fzu.icanteen.dao.OrderItemDAO;
 import edu.fzu.icanteen.dao.OrderItemDAOImpl;
 import edu.fzu.icanteen.pojo.Order;
 import edu.fzu.icanteen.pojo.OrderItem;
+import edu.fzu.icanteen.pojo.OrderItemSql;
+import edu.fzu.icanteen.pojo.OrderSql;
 
 public class OrderServlet extends HttpServlet {
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doPost(request, response);
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("request--->"+request.getRequestURL()+"===="+request.getParameterMap().toString());
-		String customerid = request.getParameter("customerid");
-		int cid = 1;
+		System.out.println("request--->" + request.getRequestURL() + "====" + request.getParameterMap().toString());
 		response.setContentType("text/html;charset=utf-8");
+		String flag = request.getParameter("flag");
+		String id = request.getParameter("id");
 		OrderDAO orderDAO = new OrderDAOImpl();
-		if (customerid == null || customerid.equals("")) {
-			System.out.println("用户不存在");
-			return;
-		} else {
-			cid = Integer.parseInt(customerid);
-		}
-		
-//		for(Order order:orders) {
-//			orderItem = orderItemDAO.list(order);
-//			order.setOrderItems(orderItem);
-//		}
 		OrderItemDAO orderItemDAO = new OrderItemDAOImpl();
-		List<Order> orders = orderDAO.list(cid);
-		List<OrderItem> orderItems = new ArrayList<OrderItem>();
-		String json = "";
-		for(Order order:orders) {
-			orderItems = orderItemDAO.list(order);
-			order.setOrderItems(orderItems);
-			json=json+"{\"orderid\":"+order.getId()+" \"customerid\":"+order.getCustomerId()+" \"merchantid\":"+order.getMerchantId()
-			+" \"appointment:"+order.getAppointment()+" \"ordertime\":"+order.getOrderTime()+" \"cancel\":"+order.getCancel()+" \"closetime\":"+order.getCloseTime();
-			json+=" \"orderitem\":[";
-			for(OrderItem orderItem:orderItems) {
-				json+="{\"id\":"+orderItem.getId()+" \"foodid\":"+orderItem.getFoodId()+" \"number\":"+orderItem.getNumber()+"}";
+		List<Order> orders;
+		List<OrderSql> orderSqls = new ArrayList<OrderSql>();
+		List<OrderItem> orderItems;
+		BaseBean data = new BaseBean();
+		int cid = 0;
+		int mid = 0;
+		
+		if (flag == null || flag.equals("") || id == null || id.equals("")) {
+			data.setMsg("falg或者id为空");
+		} else {
+			if (flag.equals("customer")) {
+				cid = Integer.parseInt(id);
+				orders = orderDAO.list(cid);
+				for (Order order : orders) {
+					orderItems = orderItemDAO.list(order);
+					order.setOrderItems(orderItems);
+					OrderSql orderSql = orderToOrdersql(order);
+					orderSqls.add(orderSql);
+				}
+			} else if (flag.equals("merchant")) {
+				mid = Integer.parseInt(id);
+				orders = orderDAO.listByMerchant(mid);
+				for (Order order : orders) {
+					orderItems = orderItemDAO.list(order);
+					order.setOrderItems(orderItems);
+					OrderSql orderSql = orderToOrdersql(order);
+					orderSqls.add(orderSql);
+				}
 			}
-			json+="]}";
 		}
-//		BaseBean data = new BaseBean(); 
-//		if (orders != null) {
-//			//判断用户是否存在
-//			data.setCode(1);
-//			data.setData(orders);
-//			data.setMsg("订单查找成功");
-//		} else {
-//			data.setMsg("订单查找错误");
-//		}
-//		Gson gson = new Gson();
-//		String json = gson.toJson(data);  //将对象转化成json字符串
+
+		if (orderSqls.equals("")) {
+			data.setMsg("没有订单信息");
+		} else {
+			data.setCode(1);
+			data.setMsg("订单查询成功");
+			data.setData(orderSqls);
+		}
+
+		Gson gson = new Gson();
+		String json = gson.toJson(data);
+
 		try {
 			response.getWriter().println(json);
-			// 将json数据传给客户端
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			// 关闭这个流
 			response.getWriter().close();
 		}
 	}
-	
+
+	private OrderSql orderToOrdersql(Order order) {
+		//把order转为ordersql;
+		OrderSql orderSql = new OrderSql();
+		orderSql.setId(order.getId());
+		orderSql.setAppointment(order.getAppointment());
+		orderSql.setCancel(order.getCancel());
+		orderSql.setCloseTime(order.getCloseTime());
+		orderSql.setCustomerId(order.getCustomerId());
+		orderSql.setMerchantId(order.getMerchantId());
+		orderSql.setOrderTime(order.getOrderTime());
+		//把orderitems转为orderitemsqls
+		List<OrderItemSql> orderItemSqls = new ArrayList<OrderItemSql>();
+		for(OrderItem orderItem:order.getOrderItems()) {
+			OrderItemSql orderItemSql = new OrderItemSql();
+			orderItemSql.setId(orderItem.getId());
+			orderItemSql.setFoodId(orderItem.getFoodId());
+			orderItemSql.setNumber(orderItem.getNumber());
+			orderItemSql.setOrder(orderItem.getOrder().getId());
+			orderItemSqls.add(orderItemSql);
+		}
+		orderSql.setOrderItems(orderItemSqls);
+		return orderSql;
+	}
 }
