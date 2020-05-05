@@ -1,6 +1,10 @@
 package edu.fzu.icanteen.dao;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -141,5 +145,49 @@ public class OrderItemDAOImpl implements OrderItemDAO {
         }
         return beans;
     }
+    
+    @Override
+   	public List<OrderItem> list(int orderId) {
+           return list(orderId, 0, Short.MAX_VALUE);
+       }
+
+    @Override
+   	public List<OrderItem> list(int orderId, int start, int count) {
+           List<OrderItem> beans = new ArrayList<OrderItem>();
+
+           String sql = "select * from OrderItem where orderId  = ? order by id desc limit ?,? ";
+
+           try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+
+               ps.setInt(1, orderId);
+               ps.setInt(2, start);
+               ps.setInt(3, count);
+
+
+               ResultSet rs = ps.executeQuery();
+
+               while (rs.next()) {
+
+                   OrderItem bean = new OrderItem();
+                   int id = rs.getInt(1);
+                   int foodId = rs.getInt("foodId");
+                   int number = rs.getInt("number");
+                   Order order = new OrderDAOImpl().get(orderId);
+                   
+                   
+                   
+                   bean.setOrder(order);
+                   bean.setFoodId(foodId);
+                   bean.setNumber(number);
+                   bean.setId(id);
+
+                   beans.add(bean);
+               }
+           } catch (SQLException e) {
+
+               e.printStackTrace();
+           }
+           return beans;
+       }
 
 }

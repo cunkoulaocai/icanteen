@@ -130,7 +130,7 @@ public class ShoppingCartDAOImpl implements ShoppingCartDAO {
     @Override
 	public List<ShoppingCart> list(int cid, int start, int count) {
         List<ShoppingCart> beans = new ArrayList<ShoppingCart>();
-        String sql = "select * from ShoppingCart where cid = ? order by id desc limit ?,? ";
+        String sql = "select * from ShoppingCart where customerid = ? order by id desc limit ?,? ";
 
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
             ps.setInt(1, cid);
