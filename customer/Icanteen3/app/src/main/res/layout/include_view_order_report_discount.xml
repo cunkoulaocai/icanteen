@@ -22,7 +22,7 @@
 
     <TextView
         style="@style/Txt.EmphasizedHuge"
-        android:layout_marginLeft="@dimen/spacing_minor"
+        android:layout_marginStart="@dimen/spacing_minor"
         android:text="-"
         android:textColor="@color/colorPrimary"
         android:textSize="30sp"

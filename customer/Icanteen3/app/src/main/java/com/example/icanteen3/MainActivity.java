@@ -1,5 +1,6 @@
 package com.example.icanteen3;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +13,9 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -35,22 +39,30 @@ public class MainActivity extends AppCompatActivity {
     private EditText et_data_uname;
     private EditText et_data_upass;
     private HashMap<String, String> stringHashMap;
-
+    public String studentId;
+    public String name;
+    public int point;
+    public int state;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        et_data_uname = (EditText) findViewById(R.id.editText2);
-        et_data_upass = (EditText) findViewById(R.id.editText);
+        et_data_uname = (EditText) findViewById(R.id.username);
+        et_data_upass = (EditText) findViewById(R.id.password);
         stringHashMap = new HashMap<>();
 
 
 
     }
-
+    public void test(View view)
+    {
+        Intent i = new Intent(MainActivity.this , DiscountActivity.class);
+        //启动
+        startActivity(i);
+    }
 
     public void loginGET(View view) {
-        stringHashMap.put("username", et_data_uname.getText().toString());
+        stringHashMap.put("studentId", et_data_uname.getText().toString());
         stringHashMap.put("password", et_data_upass.getText().toString());
         new Thread(getRun).start();
 
@@ -94,7 +106,11 @@ public class MainActivity extends AppCompatActivity {
      */
     private void requestGet(HashMap<String, String> paramsMap) {
         try {
-            String baseUrl = "http://10.0.2.2:8080/TestServices/servlet/LoginDateServlet?";
+           /* //测试跳转页面
+            Intent i = new Intent(MainActivity.this , OrderlistActivity.class);
+            //启动
+            startActivity(i);*/
+            String baseUrl = "http://10.0.2.2:8080/icanteen/servlet/LoginServlet?";
             StringBuilder tempParams = new StringBuilder();
             int pos = 0;
             for (String key : paramsMap.keySet()) {
@@ -127,10 +143,41 @@ public class MainActivity extends AppCompatActivity {
             // 开始连接
             urlConn.connect();
             // 判断请求是否成功
+
             if (urlConn.getResponseCode() == 200) {
                 // 获取返回的数据
                 String result = streamToString(urlConn.getInputStream());
+                //判断请求结果
+                boolean flag=false;
+                //解析返回的JSON
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+                    Log.e("Json", result);
+                    String code = jsonObject.getString("code");
+                    String data = jsonObject.getString("data");
+                    JSONObject jsonObject1=new JSONObject(data);
+                    //保存返回的信息
+                    studentId=jsonObject1.getString("studentId");
+                    name=jsonObject1.getString("name");
+                    point=jsonObject1.getInt("point");
+                    state=jsonObject1.getInt("state");
+                    Log.e("Json", code);
+                    Log.e("Json", data);
+                    Log.e("Json", studentId);
+                    Log.e("Json", name); Log.e("Json", String.valueOf(point));
+                    Log.e("Json", String.valueOf(state));
+                    if(code.equals("1"))flag=true;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 Log.e(TAG, "Get方式请求成功，result--->" + result);
+                if(flag)
+                {
+                //跳转到主页
+                Intent j = new Intent(MainActivity.this , MineActivity.class);
+                //启动
+                startActivity(j);
+                }
             } else {
                 Log.e(TAG, "Get方式请求失败");
             }
@@ -198,19 +245,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.e(TAG, "Post方式请求成功，result--->" + result);
 
-                /*跳转到主页
-                {
-                    setContentView(R.layout.activity_main);
-                    BottomNavigationView navView = findViewById(R.id.nav_view);
-                    // Passing each menu ID as a set of Ids because each
-                    // menu should be considered as top level destinations.
-                    AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                            R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-                            .build();
-                    NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-                    NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-                    NavigationUI.setupWithNavController(navView, navController);
-                }*/
+
 
             } else {
                 Log.e(TAG, "Post方式请求失败");

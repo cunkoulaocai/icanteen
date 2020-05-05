@@ -7,14 +7,14 @@
     android:paddingBottom="12.0dip"
     android:paddingTop="12.0dip">
 
-    <LinearLayout
-        android:layout_width="0.0dip"
+    <Space
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1.0"/>
+        android:layout_weight="1" />
 
     <TextView
         style="@style/Txt.Auxiliary"
-        android:layout_marginLeft="@dimen/spacing_minor"
+        android:layout_marginStart="@dimen/spacing_minor"
         android:text="小计" />
 
     <TextView

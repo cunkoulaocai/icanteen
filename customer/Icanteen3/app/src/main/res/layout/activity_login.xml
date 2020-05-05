@@ -15,24 +15,24 @@
         android:textColor="@android:color/black"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/button_first"
+        app:layout_constraintBottom_toTopOf="@+id/login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button_first"
+        android:id="@+id/login"
         android:layout_width="109dp"
         android:layout_height="47dp"
         android:layout_marginBottom="180dp"
         android:background="@color/colorPrimary"
+        android:onClick="loginGET"
         android:text="@string/登录"
         android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_first"
-        android:onClick="loginGET"/>
+        app:layout_constraintTop_toBottomOf="@id/textview_first" />
 
     <TextView
         android:id="@+id/total"
@@ -41,19 +41,17 @@
         android:layout_marginBottom="190dp"
         android:text="@string/请使用学工号登录"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/button_first"
+        app:layout_constraintBottom_toTopOf="@+id/login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textview_first" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="99dp"
-        android:layout_marginLeft="99dp"
         android:layout_marginEnd="99dp"
-        android:layout_marginRight="99dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/学工号"
@@ -62,28 +60,27 @@
         android:textColorHighlight="@android:color/holo_orange_dark"
         android:typeface="sans"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/editText2"
+        app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/total" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="101dp"
-        android:layout_marginLeft="101dp"
         android:layout_marginEnd="97dp"
-        android:layout_marginRight="97dp"
         android:layout_marginBottom="60dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/密码"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/button_first"
+        app:layout_constraintBottom_toTopOf="@+id/login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/username" />
 
     <CheckBox
         android:id="@+id/checkBox"
@@ -98,9 +95,9 @@
         android:textColorHighlight="@color/colorPrimary"
         android:textColorLink="@color/colorPrimaryDark"
         android:textCursorDrawable="@color/colorAccent"
-        app:layout_constraintBottom_toTopOf="@+id/button_first"
+        app:layout_constraintBottom_toTopOf="@+id/login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

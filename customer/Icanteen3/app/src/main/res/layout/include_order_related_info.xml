@@ -28,7 +28,7 @@
                 <TextView
                     android:id="@+id/txt_remark"
                     style="@style/Txt.Main.Weighted"
-                    android:layout_marginLeft="@dimen/spacing_massive"
+                    android:layout_marginStart="@dimen/spacing_massive"
                     android:singleLine="false"
                     tools:text="不放辣"
                     />
@@ -45,7 +45,7 @@
                 <TextView
                     android:id="@+id/txt_order_num"
                     style="@style/Txt.Main.Weighted"
-                    android:layout_marginLeft="@dimen/spacing_massive"
+                    android:layout_marginStart="@dimen/spacing_massive"
                     tools:text="20160122160528453"
                     />
 
@@ -61,7 +61,7 @@
                 <TextView
                     android:id="@+id/txt_created_at"
                     style="@style/Txt.Main.Weighted"
-                    android:layout_marginLeft="@dimen/spacing_massive"
+                    android:layout_marginStart="@dimen/spacing_massive"
                     tools:text="2016-01-22 16:06:01"
                     />
 
@@ -77,7 +77,7 @@
                 <TextView
                     android:id="@+id/txt_pay_method"
                     style="@style/Txt.Main.Weighted"
-                    android:layout_marginLeft="@dimen/spacing_massive"
+                    android:layout_marginStart="@dimen/spacing_massive"
                     tools:text="在线支付"
                     />
 
