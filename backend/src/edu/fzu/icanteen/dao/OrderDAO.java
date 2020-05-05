@@ -6,7 +6,7 @@ import edu.fzu.icanteen.pojo.Order;
 
 public interface OrderDAO{
 	
-	int getTotal(int cid);
+	int getTotal(int customerId);
 
 	void add(Order bean);
 	
@@ -16,9 +16,9 @@ public interface OrderDAO{
 
 	Order get(int id);
 
-	List<Order> list(int cid);
+	List<Order> list(int cId);
 
-	List<Order> list(int cid, int start, int count);
+	List<Order> list(int cId, int start, int count);
 
 	List<Order> list();
 
@@ -33,7 +33,10 @@ public interface OrderDAO{
 	boolean isExist(String name);
 
 	Order get(String name);
-
+	
+	List<Order> listByMerchant(int cid, int start, int count);
+	
+	List<Order> listByMerchant(int mid);
 
 	
 
