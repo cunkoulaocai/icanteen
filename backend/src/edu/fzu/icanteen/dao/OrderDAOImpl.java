@@ -10,14 +10,14 @@ import edu.fzu.icanteen.util.DBUtil;
 public class OrderDAOImpl implements OrderDAO {
 
     @Override
-	public int getTotal(int customerId) {
+	public int getTotal(int cid) {
         int total = 0;
         try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
         	String sql = null;
-        	if(customerId == 0)    //不按类别
+        	if(cid == 0)    //不按类别
         		sql = "select count(*) from Orders where 1 = 1 " ;
         	else 
-        		sql = "select count(*) from Orders where customerId = " + customerId;
+        		sql = "select count(*) from Orders where cid = " + cid;
 
             ResultSet rs = s.executeQuery(sql);
             while (rs.next()) {
@@ -58,7 +58,7 @@ public class OrderDAOImpl implements OrderDAO {
     @Override
 	public void update(Order bean) {
 
-        String sql = "update Orders set customerId = ?, merchantid = ?, appointment = ?, ordertime = ?, cancel = ?, closetime = ? where id = ??";
+        String sql = "update Orders set customerid = ?, merchantid = ?, appointment = ?, ordertime = ?, cancel = ?, closetime = ? where id = ??";
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
 
         	ps.setInt(1, bean.getCustomerId());
@@ -128,17 +128,17 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-	public List<Order> list(int customerId) {
-        return list(customerId, 0, Short.MAX_VALUE);
+	public List<Order> list(int cid) {
+        return list(cid, 0, Short.MAX_VALUE);
     }
 
     @Override
-	public List<Order> list(int cId, int start, int count) {
+	public List<Order> list(int cid, int start, int count) {
         List<Order> beans = new ArrayList<Order>();
-        String sql = "select * from Orders where customerId = ? order by id desc limit ?,? ";
+        String sql = "select * from Orders where cid = ? order by id desc limit ?,? ";
 
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
-            ps.setInt(1, cId);
+            ps.setInt(1, cid);
             ps.setInt(2, start);
             ps.setInt(3, count);
 
@@ -278,66 +278,7 @@ public class OrderDAOImpl implements OrderDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	@Override
-	public List<Order> listByMerchant(int mid, int start, int count) {
-		
-        List<Order> beans = new ArrayList<Order>();
-        String sql = "select * from Orders where merchantid = ? order by id desc limit ?,? ";
 
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
-            
-        	ps.setInt(1, mid);
-            ps.setInt(2, start);
-            ps.setInt(3, count);
-            ResultSet rs = ps.executeQuery();
 
-            while (rs.next()) {
-                Order bean = new Order();
-                int id = rs.getInt(1);
-                int customerId = rs.getInt("customerId");
-                int merchantId = rs.getInt("merchantId");
-                Date appointment = rs.getDate("appointment");
-                Date orderTime = rs.getDate("ordertime");
-                int cancel = rs.getInt("cancel") ;
-                Date closeTime = rs.getDate("closetime");
-               
-                bean.setCustomerId(customerId);
-                bean.setMerchantId(merchantId);
-                bean.setAppointment(appointment);
-                bean.setOrderTime(orderTime);
-                bean.setCancel(cancel);
-                bean.setCloseTime(closeTime);
-                bean.setId(id);
-                beans.add(bean);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return beans;
-    }
-	
-	public List<Order> listByMerchant(int mid) {
-        List<Order> orders = new ArrayList<Order>();
-        String sql = "select * from orders where merchantid = " +mid;
-        try(Connection conn = DBUtil.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
-        	ResultSet rs = ps.executeQuery();
-        	while(rs.next()) {
-        		Order order = new Order();
-        		order.setId(rs.getInt("id"));
-        		order.setCustomerId(rs.getInt("customerid"));
-                order.setMerchantId(rs.getInt("merchantid"));
-                order.setAppointment(rs.getDate("appointment"));
-                order.setOrderTime(rs.getDate("ordertime"));
-                order.setCancel(rs.getInt("cancel"));
-                order.setCloseTime(rs.getDate("closetime"));
-                orders.add(order);
-        	}
-        } catch (Exception e) {
-			// TODO: handle exception
-        	e.printStackTrace();
-		}
-        return orders;
-    }
 
 }

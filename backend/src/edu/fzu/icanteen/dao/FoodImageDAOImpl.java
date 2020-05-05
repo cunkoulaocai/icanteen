@@ -137,11 +137,11 @@ public class FoodImageDAOImpl implements FoodImageDAO {
     }
     
     @Override
-   	public List<FoodImage> list(int foodId) {
-           return list(foodId, 0, Short.MAX_VALUE);
+   	public List<FoodImage> list(int fId) {
+           return list(fId, 0, Short.MAX_VALUE);
        }
 
-    @Override
+       @Override
    	public List<FoodImage> list(int foodId, int start, int count) {
            List<FoodImage> beans = new ArrayList<FoodImage>();
 

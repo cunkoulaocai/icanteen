@@ -15,5 +15,5 @@ public interface MerchantDAO {
     List<Merchant> list(int start, int count);
     boolean isExist(String name);
     Merchant get(String name);
-    Merchant get(String phone, String password);
+    Merchant get(String name, String password);
 }

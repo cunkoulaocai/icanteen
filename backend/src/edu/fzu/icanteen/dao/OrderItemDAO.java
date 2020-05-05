@@ -2,7 +2,6 @@ package edu.fzu.icanteen.dao;
 
 import java.util.List;
 
-import edu.fzu.icanteen.pojo.FoodImage;
 import edu.fzu.icanteen.pojo.Order;
 import edu.fzu.icanteen.pojo.OrderItem;
 
@@ -24,9 +23,5 @@ public interface OrderItemDAO {
 	List<OrderItem> list(Order order);
 
 	List<OrderItem> list(Order order, int start, int count);
-
-	List<OrderItem> list(int orderId);
-
-	List<OrderItem> list(int orderId, int start, int count);
 
 }

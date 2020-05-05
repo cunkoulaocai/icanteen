@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.fzu.icanteen.pojo.Customer;
 import edu.fzu.icanteen.pojo.Merchant;
 import edu.fzu.icanteen.util.DBUtil;
 
@@ -146,32 +145,8 @@ public class MerchantDAOImpl implements MerchantDAO {
 	}
 
 	@Override
-	public Merchant get(String phone, String password) {
-		Merchant merchant = null;
-		String sql = "SELECT * FROM merchant WHERE phoneNumber = ? and password = ?";
-		// 获取连接；创建PreparedSatemant对象
-		try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
-			ps.setString(1, phone);
-			ps.setString(2, password);
-			ResultSet rs = ps.executeQuery(); // 得到结果集
-			
-			while (rs.next()) {
-				merchant = new Merchant();
-				int id = rs.getInt("id");
-				String phoneNumber = rs.getString("phoneNumber");
-				String psd = rs.getString("password");
-				String name = rs.getString("name");
-				int state = rs.getInt("state");
-				merchant.setId(id);
-				merchant.setPhoneNumber(phoneNumber);
-				merchant.setName(name);
-				merchant.setPassword(psd);
-				merchant.setState(state);
-				break;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return merchant;
+	public Merchant get(String name, String password) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
