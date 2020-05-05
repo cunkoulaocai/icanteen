@@ -33,7 +33,10 @@ public interface OrderDAO{
 	boolean isExist(String name);
 
 	Order get(String name);
-
+	
+	List<Order> listByMerchant(int cid, int start, int count);
+	
+	List<Order> listByMerchant(int mid);
 
 	
 

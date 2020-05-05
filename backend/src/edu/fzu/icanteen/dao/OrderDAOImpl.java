@@ -278,7 +278,66 @@ public class OrderDAOImpl implements OrderDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public List<Order> listByMerchant(int mid, int start, int count) {
+		
+        List<Order> beans = new ArrayList<Order>();
+        String sql = "select * from Orders where merchantid = ? order by id desc limit ?,? ";
 
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+            
+        	ps.setInt(1, mid);
+            ps.setInt(2, start);
+            ps.setInt(3, count);
+            ResultSet rs = ps.executeQuery();
 
+            while (rs.next()) {
+                Order bean = new Order();
+                int id = rs.getInt(1);
+                int customerId = rs.getInt("customerId");
+                int merchantId = rs.getInt("merchantId");
+                Date appointment = rs.getDate("appointment");
+                Date orderTime = rs.getDate("ordertime");
+                int cancel = rs.getInt("cancel") ;
+                Date closeTime = rs.getDate("closetime");
+               
+                bean.setCustomerId(customerId);
+                bean.setMerchantId(merchantId);
+                bean.setAppointment(appointment);
+                bean.setOrderTime(orderTime);
+                bean.setCancel(cancel);
+                bean.setCloseTime(closeTime);
+                bean.setId(id);
+                beans.add(bean);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return beans;
+    }
+	
+	public List<Order> listByMerchant(int mid) {
+        List<Order> orders = new ArrayList<Order>();
+        String sql = "select * from orders where merchantid = " +mid;
+        try(Connection conn = DBUtil.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+        	ResultSet rs = ps.executeQuery();
+        	while(rs.next()) {
+        		Order order = new Order();
+        		order.setId(rs.getInt("id"));
+        		order.setCustomerId(rs.getInt("customerid"));
+                order.setMerchantId(rs.getInt("merchantid"));
+                order.setAppointment(rs.getDate("appointment"));
+                order.setOrderTime(rs.getDate("ordertime"));
+                order.setCancel(rs.getInt("cancel"));
+                order.setCloseTime(rs.getDate("closetime"));
+                orders.add(order);
+        	}
+        } catch (Exception e) {
+			// TODO: handle exception
+        	e.printStackTrace();
+		}
+        return orders;
+    }
 
 }

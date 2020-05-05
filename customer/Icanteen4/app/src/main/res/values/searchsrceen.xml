@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ctype">
+        <item>综合排序</item>
+        <item>好评优先</item>
+        <item>人均从低到高</item>
+        <item>人均从高到低</item>
+        <item>人均等待时间</item>
+        <item>销量排序</item>
+    </string-array>
+</resources>
