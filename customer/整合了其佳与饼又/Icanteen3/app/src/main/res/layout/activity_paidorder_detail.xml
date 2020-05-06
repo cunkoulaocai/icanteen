@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!-- 用户信息板块 -->
+            <include layout="@layout/include_order_user_info" />
+            <!-- 商品信息板块 -->
+            <include layout="@layout/include_order_product_info" />
+            <!-- 代金券信息模块-->
+            <include layout="@layout/include_view_order_report_discount" />
+            <!-- 总价信息模块-->
+            <include layout="@layout/include_view_order_report_price" />
+            <!-- 订单信息板块 -->
+            <include layout="@layout/include_order_related_info" />
+
+            <Button
+                android:id="@+id/evaluate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/buttonstyle"
+                android:text="评价"
+                android:textColor="@color/colorPrimary" />
+
+        </LinearLayout>
+
+
