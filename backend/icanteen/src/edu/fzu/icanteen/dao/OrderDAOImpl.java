@@ -339,5 +339,20 @@ public class OrderDAOImpl implements OrderDAO {
 		}
         return orders;
     }
+	
+	@Override
+	public void updateOrderStatus(int oid, int cancel) {
+		
+	        String sql = "update Orders set cancel = ? where id = ? ";
+	        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+	        	
+	        	ps.setInt(1, cancel);
+	        	ps.setInt(2, oid);
+	        	ps.execute();
 
-}
+	        } catch (SQLException e) {
+
+	            e.printStackTrace();
+	        }
+	    }
+	}

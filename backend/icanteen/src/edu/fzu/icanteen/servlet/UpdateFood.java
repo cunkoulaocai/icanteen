@@ -2,20 +2,14 @@ package edu.fzu.icanteen.servlet;
 
 import java.io.IOException;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-
 import edu.fzu.icanteen.dao.FoodDAO;
 import edu.fzu.icanteen.dao.FoodDAOImpl;
-import edu.fzu.icanteen.dao.MerchantDAO;
-import edu.fzu.icanteen.dao.MerchantDAOImpl;
 import edu.fzu.icanteen.pojo.Food;
-import edu.fzu.icanteen.pojo.Merchant;
 
 public class UpdateFood extends HttpServlet {
 
