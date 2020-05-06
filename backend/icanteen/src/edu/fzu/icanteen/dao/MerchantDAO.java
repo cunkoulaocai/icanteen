@@ -16,4 +16,5 @@ public interface MerchantDAO {
     boolean isExist(String name);
     Merchant get(String name);
     Merchant get(String phone, String password);
+    
 }

@@ -38,6 +38,6 @@ public interface OrderDAO{
 	
 	List<Order> listByMerchant(int mid);
 
-	
+	void updateOrderStatus(int oid, int cancel);
 
 }
