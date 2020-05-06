@@ -1,6 +1,6 @@
-package com.sx.takeaway.ui;
+package com.example.icanteen5.ui;
 
-import com.sx.takeaway.model.net.bean.GoodsInfo;
+import com.example.icanteen5.model.net.bean.GoodsInfo;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 

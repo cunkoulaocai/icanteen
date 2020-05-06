@@ -1,4 +1,4 @@
-package com.example.icanteen3.ui.dashboard;
+package com.example.icanteen5.ui.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

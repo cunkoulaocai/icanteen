@@ -1,15 +1,15 @@
-package com.sx.takeaway.ui.activity;
+package com.example.icanteen5.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.sx.takeaway.dagger2.component.DaggerCommonComponent;
-import com.sx.takeaway.dagger2.module.PresenterModule;
-import com.sx.takeaway.presenter.activity.OrderPresenter;
-import com.sx.takeaway.presenter.activity.PaymentPresenter;
-import com.sx.takeaway.presenter.activity.ReceiptAddressPresenter;
-import com.sx.takeaway.ui.IView;
+import com.example.icanteen5.dagger2.component.DaggerCommonComponent;
+import com.example.icanteen5.dagger2.module.PresenterModule;
+import com.example.icanteen5.presenter.activity.OrderPresenter;
+import com.example.icanteen5.presenter.activity.PaymentPresenter;
+import com.example.icanteen5.presenter.activity.ReceiptAddressPresenter;
+import com.example.icanteen5.ui.IView;
 import com.umeng.analytics.MobclickAgent;
 
 import javax.inject.Inject;

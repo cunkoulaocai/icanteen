@@ -1,4 +1,4 @@
-package com.example.icanteen3.ui.dashboard;
+package com.example.icanteen5.mode;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

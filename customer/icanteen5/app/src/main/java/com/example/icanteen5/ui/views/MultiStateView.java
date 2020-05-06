@@ -1,4 +1,4 @@
-package com.example.icanteen3.widget;
+package com.example.icanteen5.ui.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;

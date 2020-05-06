@@ -1,4 +1,4 @@
-package com.sx.takeaway.ui.fragment;
+package com.example.icanteen5.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

@@ -1,4 +1,4 @@
-package com.sx.takeaway;
+package com.example.icanteen5;
 
 import android.app.Application;
 import android.content.Context;

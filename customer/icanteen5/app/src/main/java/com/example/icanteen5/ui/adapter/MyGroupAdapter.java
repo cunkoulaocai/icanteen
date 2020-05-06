@@ -1,4 +1,4 @@
-package com.sx.takeaway.ui.adapter;
+package com.example.icanteen5.ui.adapter;
 
 import android.graphics.Paint;
 import android.text.TextUtils;
@@ -13,14 +13,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.sx.takeaway.MyApplication;
-import com.sx.takeaway.R;
-import com.sx.takeaway.model.net.bean.GoodsInfo;
-import com.sx.takeaway.model.net.bean.GoodsTypeInfo;
-import com.sx.takeaway.ui.ShoppingCartManager;
-import com.sx.takeaway.utils.AnimationUtils;
-import com.sx.takeaway.utils.NumberFormatUtils;
-import com.sx.takeaway.utils.UiUtils;
+import com.example.icanteen5.MyApplication;
+import com.example.icanteen5.R;
+import com.example.icanteen5.model.net.bean.GoodsInfo;
+import com.example.icanteen5.model.net.bean.GoodsTypeInfo;
+import com.example.icanteen5.ui.ShoppingCartManager;
+import com.example.icanteen5.utils.AnimationUtils;
+import com.example.icanteen5.utils.NumberFormatUtils;
+import com.example.icanteen5.utils.UiUtils;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.sx.takeaway.ui.views;
+package com.example.icanteen5.ui.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;

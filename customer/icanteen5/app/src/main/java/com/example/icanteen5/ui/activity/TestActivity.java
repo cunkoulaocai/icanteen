@@ -1,4 +1,4 @@
-package com.sx.takeaway.ui.activity;
+package com.example.icanteen5.ui.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

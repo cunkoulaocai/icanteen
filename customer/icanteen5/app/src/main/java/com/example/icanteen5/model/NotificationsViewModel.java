@@ -1,4 +1,4 @@
-package com.example.icanteen3.ui.notifications;
+package com.example.icanteen5.model;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

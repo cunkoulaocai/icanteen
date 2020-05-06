@@ -1,4 +1,4 @@
-package com.sx.takeaway.ui.adapter;
+package com.example.icanteen5.ui.adapter;
 
 import android.graphics.Color;
 import android.util.TypedValue;
@@ -9,9 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.sx.takeaway.MyApplication;
-import com.sx.takeaway.R;
-import com.sx.takeaway.model.net.bean.GoodsTypeInfo;
+import com.example.icanteen5.MyApplication;
+import com.example.icanteen5.R;
+import com.example.icanteen5.model.net.bean.GoodsTypeInfo;
 
 import java.util.ArrayList;
 

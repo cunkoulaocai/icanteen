@@ -1,4 +1,4 @@
-package com.sx.takeaway.ui.fragment;
+package com.example.icanteen5.ui.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.sx.takeaway.ui.fragment;
+package com.example.icanteen5.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;

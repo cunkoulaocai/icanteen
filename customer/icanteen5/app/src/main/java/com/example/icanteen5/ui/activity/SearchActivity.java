@@ -1,4 +1,4 @@
-package com.example.Icanteen4;
+package com.example.icanteen5.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
